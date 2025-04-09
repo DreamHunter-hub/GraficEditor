@@ -1,6 +1,6 @@
 ﻿using GraficEditor.Enums;
 using GraficEditor.Interfaces;
-using GraficEditor.Strategies.BinaryTransformstion;
+using GraficEditor.Strategies.BinaryTransformation;
 using GraficEditor.Strategies.GrayscaleTransformation;
 
 namespace GraficEditor.Factories {

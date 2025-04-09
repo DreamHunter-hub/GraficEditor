@@ -1,4 +1,4 @@
-﻿using GraficEditor.Forms.VisualizationMatrix;
+﻿using GraficEditor.Forms.VisualizationImageInfo;
 using GraficEditor.imageSamples;
 
 namespace GraficEditor.Managers {
