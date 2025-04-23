@@ -1,13 +1,13 @@
-﻿using GraficEditor.Enums;
+﻿using GraficEditor.Enums.Transformation;
 using GraficEditor.Factories;
-using GraficEditor.Visualizations.Chart;
-using GraficEditor.Visualizations.DataGridView;
+using GraficEditor.Strategies.Visualization.DataGridView;
+using GraficEditor.Strategies.Visualization.Histogram;
 
 namespace GraficEditor.imageSamples {
     /// <summary>
     /// Класс для работы с изображениями в RGB-формате.
     /// </summary>
-    class RGBImage : ImageSample {
+    public class RGBImage : ImageSample {
         /// <summary>
         /// Конструктор, инициализирующий объект изображения RGB-формата.
         /// </summary>

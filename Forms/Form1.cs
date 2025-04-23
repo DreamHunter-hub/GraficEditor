@@ -1,7 +1,12 @@
-﻿using GraficEditor.Enums;
+﻿using GraficEditor.Enums.Filtration;
+using GraficEditor.Enums.Morphological;
+using GraficEditor.Enums.Transformation;
 using GraficEditor.Factories;
+using GraficEditor.Forms.Input;
 using GraficEditor.imageSamples;
+using GraficEditor.Interfaces;
 using GraficEditor.Managers;
+using GraficEditor.Strategies.Filter;
 using GraficEditor.Utils;
 
 namespace GraficEditor.Forms {
@@ -52,23 +57,6 @@ namespace GraficEditor.Forms {
             if (saveFile.ShowDialog() == DialogResult.OK) {
                 pictureBox1.Image.Save(saveFile.FileName); // Сохраняем текущее изображение
             }
-        }
-
-        /// <summary>
-        /// Преобразует изображение в градации серого.
-        /// </summary>
-        private void полутоновоеToolStripMenuItem_Click(object sender, EventArgs e) {
-            HandleAction(() => {
-                // Преобразование изображения в зависимости от его типа
-                if (_image is RGBImage rgbImage) {
-                    _image = _image.toGrayscale(GrayscaleTransformationType.FromRGBMax);
-                }
-                else {
-                    _image = _image.toGrayscale(GrayscaleTransformationType.FromBinaryUrbanDistance);
-                }
-                // Отображение преобразованного изображения
-                pictureBox1.Image = ImageProccesingUtils.MatrixToImage(_image.Pixels);
-            });
         }
 
         /// <summary>
@@ -129,6 +117,11 @@ namespace GraficEditor.Forms {
                 полутоновоеToolStripMenuItem.DropDownItems.Clear();
                 полутоновоеToolStripMenuItem.DropDownItems.Add("Метод максимального", null, ConvertToGrayscaleMax_Click);
                 полутоновоеToolStripMenuItem.DropDownItems.Add("Метод среднего", null, ConvertToGrayscaleAverage_Click);
+
+                бинарноеToolStripMenuItem.DropDownItems.Clear();
+                бинарноеToolStripMenuItem.DropDownItems.Add("Метод 40%", null, ConvertToBinary40Percent_Click);
+                бинарноеToolStripMenuItem.DropDownItems.Add("Порог с экрана", null, ConvertToBinaryBorder_Click);
+
             }
             else if (_image is BinaryImage) {
                 // Настройки для бинарных изображений
@@ -144,6 +137,10 @@ namespace GraficEditor.Forms {
                 цветноеToolStripMenuItem.Enabled = true;
                 полутоновоеToolStripMenuItem.Enabled = false;
                 бинарноеToolStripMenuItem.Enabled = true;
+
+                бинарноеToolStripMenuItem.DropDownItems.Clear();
+                бинарноеToolStripMenuItem.DropDownItems.Add("Метод 40%", null, ConvertToBinary40Percent_Click);
+                бинарноеToolStripMenuItem.DropDownItems.Add("Порог с экрана", null, ConvertToBinaryBorder_Click);
             }
         }
 
@@ -163,7 +160,7 @@ namespace GraficEditor.Forms {
             });
         }
 
-        private void ConvertToBinaryBorder_Click(object sender, EventArgs e) {
+        private void ConvertToBinaryBorder_Click(object? sender, EventArgs e) {
             HandleAction(() => {
                 _image = _image.toBinary(BinaryTransformationType.FromGrayscaleInputBorder);
                 pictureBox1.Image = ImageProccesingUtils.MatrixToImage(_image.Pixels);
@@ -184,6 +181,29 @@ namespace GraficEditor.Forms {
                 _image = _image.toGrayscale(GrayscaleTransformationType.FromRGBMax);
                 pictureBox1.Image = ImageProccesingUtils.MatrixToImage(_image.Pixels);
                 UpdateMenuState();
+            });
+        }
+
+        private void среднееЗначениеToolStripMenuItem_Click(object sender, EventArgs e) {
+            HandleAction(() => {
+                _image = FilterManager.AverageFilter(_image);
+                pictureBox1.Image = ImageProccesingUtils.MatrixToImage(_image.Pixels);
+                UpdateMenuState();
+            });
+        }
+
+        private void пороговаяФильтрацияToolStripMenuItem_Click(object sender, EventArgs e) {
+            HandleAction(() => {
+                _image = FilterManager.ThresholdFilter(_image);
+                pictureBox1.Image = ImageProccesingUtils.MatrixToImage(_image.Pixels);
+                UpdateMenuState();
+            });
+        }
+
+        private void эToolStripMenuItem_Click(object sender, EventArgs e) {
+            HandleAction(() => {
+                _image = MorphologicalManager.ErosiImage(_image);
+                pictureBox1.Image = ImageProccesingUtils.MatrixToImage(_image.Pixels);
             });
         }
     }

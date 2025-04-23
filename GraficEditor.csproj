@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Strategies\RGBTransformation\" />
+    <Folder Include="Strategies\Transformation\RGB\" />
   </ItemGroup>
 
 </Project>

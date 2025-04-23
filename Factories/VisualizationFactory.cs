@@ -1,6 +1,7 @@
-﻿using GraficEditor.imageSamples;
+﻿
+using GraficEditor.imageSamples;
 using GraficEditor.Interfaces;
-using GraficEditor.Visualizations;
+using GraficEditor.Strategies.Visualization;
 
 namespace GraficEditor.Factories {
     /// <summary>

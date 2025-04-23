@@ -1,4 +1,4 @@
-﻿using GraficEditor.Enums;
+﻿using GraficEditor.Enums.Transformation;
 
 namespace GraficEditor.imageSamples {
     /// <summary>

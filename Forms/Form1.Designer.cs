@@ -37,7 +37,12 @@ namespace GraficEditor.Forms {
             расстоянийToolStripMenuItem = new ToolStripMenuItem();
             гистограммыToolStripMenuItem = new ToolStripMenuItem();
             построитьToolStripMenuItem = new ToolStripMenuItem();
+            фильтрацияToolStripMenuItem = new ToolStripMenuItem();
+            среднееЗначениеToolStripMenuItem = new ToolStripMenuItem();
+            пороговаяФильтрацияToolStripMenuItem = new ToolStripMenuItem();
             pictureBox1 = new PictureBox();
+            морфологическаяОбработкаToolStripMenuItem = new ToolStripMenuItem();
+            эToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -45,10 +50,10 @@ namespace GraficEditor.Forms {
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { менюToolStripMenuItem, преобразоватьToolStripMenuItem, матрицыToolStripMenuItem, гистограммыToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { менюToolStripMenuItem, преобразоватьToolStripMenuItem, матрицыToolStripMenuItem, гистограммыToolStripMenuItem, фильтрацияToolStripMenuItem, морфологическаяОбработкаToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(734, 28);
+            menuStrip1.Size = new Size(839, 28);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -83,19 +88,19 @@ namespace GraficEditor.Forms {
             // цветноеToolStripMenuItem
             // 
             цветноеToolStripMenuItem.Name = "цветноеToolStripMenuItem";
-            цветноеToolStripMenuItem.Size = new Size(224, 26);
+            цветноеToolStripMenuItem.Size = new Size(185, 26);
             цветноеToolStripMenuItem.Text = "Цветное";
             // 
             // полутоновоеToolStripMenuItem
             // 
             полутоновоеToolStripMenuItem.Name = "полутоновоеToolStripMenuItem";
-            полутоновоеToolStripMenuItem.Size = new Size(224, 26);
+            полутоновоеToolStripMenuItem.Size = new Size(185, 26);
             полутоновоеToolStripMenuItem.Text = "Полутоновое";
             // 
             // бинарноеToolStripMenuItem
             // 
             бинарноеToolStripMenuItem.Name = "бинарноеToolStripMenuItem";
-            бинарноеToolStripMenuItem.Size = new Size(224, 26);
+            бинарноеToolStripMenuItem.Size = new Size(185, 26);
             бинарноеToolStripMenuItem.Text = "Бинарное";
             // 
             // матрицыToolStripMenuItem
@@ -133,21 +138,56 @@ namespace GraficEditor.Forms {
             построитьToolStripMenuItem.Text = "Построить";
             построитьToolStripMenuItem.Click += построитьToolStripMenuItem_Click;
             // 
+            // фильтрацияToolStripMenuItem
+            // 
+            фильтрацияToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { среднееЗначениеToolStripMenuItem, пороговаяФильтрацияToolStripMenuItem });
+            фильтрацияToolStripMenuItem.Name = "фильтрацияToolStripMenuItem";
+            фильтрацияToolStripMenuItem.Size = new Size(108, 24);
+            фильтрацияToolStripMenuItem.Text = "Фильтрация";
+            // 
+            // среднееЗначениеToolStripMenuItem
+            // 
+            среднееЗначениеToolStripMenuItem.Name = "среднееЗначениеToolStripMenuItem";
+            среднееЗначениеToolStripMenuItem.Size = new Size(257, 26);
+            среднееЗначениеToolStripMenuItem.Text = "Среднее значение";
+            среднееЗначениеToolStripMenuItem.Click += среднееЗначениеToolStripMenuItem_Click;
+            // 
+            // пороговаяФильтрацияToolStripMenuItem
+            // 
+            пороговаяФильтрацияToolStripMenuItem.Name = "пороговаяФильтрацияToolStripMenuItem";
+            пороговаяФильтрацияToolStripMenuItem.Size = new Size(257, 26);
+            пороговаяФильтрацияToolStripMenuItem.Text = "Пороговая фильтрация";
+            пороговаяФильтрацияToolStripMenuItem.Click += пороговаяФильтрацияToolStripMenuItem_Click;
+            // 
             // pictureBox1
             // 
             pictureBox1.Location = new Point(12, 39);
             pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(710, 453);
+            pictureBox1.Size = new Size(815, 453);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
+            // 
+            // морфологическаяОбработкаToolStripMenuItem
+            // 
+            морфологическаяОбработкаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { эToolStripMenuItem });
+            морфологическаяОбработкаToolStripMenuItem.Name = "морфологическаяОбработкаToolStripMenuItem";
+            морфологическаяОбработкаToolStripMenuItem.Size = new Size(229, 24);
+            морфологическаяОбработкаToolStripMenuItem.Text = "Морфологическая обработка";
+            // 
+            // эToolStripMenuItem
+            // 
+            эToolStripMenuItem.Name = "эToolStripMenuItem";
+            эToolStripMenuItem.Size = new Size(224, 26);
+            эToolStripMenuItem.Text = "Эрозия";
+            эToolStripMenuItem.Click += эToolStripMenuItem_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(734, 505);
+            ClientSize = new Size(839, 505);
             Controls.Add(pictureBox1);
             Controls.Add(menuStrip1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -160,17 +200,6 @@ namespace GraficEditor.Forms {
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
-            //
-            // InitializeMenu
-            //
-            // Добавляем методы для Цветное
-            //
-            // Добовляем методы для Полутоновое
-            полутоновоеToolStripMenuItem.DropDownItems.Add("Метод максимального", null, ConvertToGrayscaleMax_Click);
-            полутоновоеToolStripMenuItem.DropDownItems.Add("Метод среднего", null, ConvertToGrayscaleAverage_Click);
-            // Добавляем методы для Бинарное
-            бинарноеToolStripMenuItem.DropDownItems.Add("40%", null, ConvertToBinary40Percent_Click);
-            бинарноеToolStripMenuItem.DropDownItems.Add("Порог с экрана", null, ConvertToBinaryBorder_Click);
         }
 
         #endregion
@@ -189,6 +218,11 @@ namespace GraficEditor.Forms {
         private ToolStripMenuItem гистограммыToolStripMenuItem;
         private ToolStripMenuItem построитьToolStripMenuItem;
         private ToolStripMenuItem цветноеToolStripMenuItem;
+        private ToolStripMenuItem фильтрацияToolStripMenuItem;
+        private ToolStripMenuItem среднееЗначениеToolStripMenuItem;
+        private ToolStripMenuItem пороговаяФильтрацияToolStripMenuItem;
+        private ToolStripMenuItem морфологическаяОбработкаToolStripMenuItem;
+        private ToolStripMenuItem эToolStripMenuItem;
     }
 }
 

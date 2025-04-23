@@ -1,14 +1,14 @@
-﻿using GraficEditor.Enums;
+﻿using GraficEditor.Enums.Transformation;
 using GraficEditor.Factories;
-using GraficEditor.Visualizations.Chart;
-using GraficEditor.Visualizations.DataGridView;
+using GraficEditor.Strategies.Visualization.DataGridView;
+using GraficEditor.Strategies.Visualization.Histogram;
 
 namespace GraficEditor.imageSamples {
     /// <summary>
     /// Класс для работы с изображениями в градациях серого.
     /// Содержит методы для обработки и визуализации таких изображений.
     /// </summary>
-    class GrayscaleImage : ImageSample {
+    public class GrayscaleImage : ImageSample {
         /// <summary>
         /// Конструктор, инициализирующий объект изображения в градациях серого.
         /// </summary>
